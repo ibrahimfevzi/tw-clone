@@ -3,6 +3,7 @@ import PostList from "./components/PostList";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { ReactComponent as TwitterLogo } from "./assets/twitter.svg";
+import { ReactComponent as TwitterLogo2 } from "./assets/twitter2.svg";
 
 export const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMiwidXNlcm5hbWUiOiJpYnJhaGltMiIsImlhdCI6MTY4NjAwOTc4OCwiZXhwIjoxNjg2MDk2MTg4fQ.TGvZajE_TMiqm3L872j37nkiG3il7B5YH3gdbWdvNMk";
@@ -77,9 +78,9 @@ const App = () => {
         {/* Sol Bölüm */}
         <div className="col-span-12 sm:col-span-2">
           <button className="sidebar-icon flex items-center">
-            <TwitterLogo className="w-6 h-6 text-blue-400" />
-            <TwitterLogo className="w-6 h-6 text-blue-400" />
-            <TwitterLogo className="w-6 h-6 text-blue-400" />
+            <TwitterLogo2 className="w-6 h-6 text-blue-400" />
+            <TwitterLogo2 className="w-6 h-6 text-blue-400" />
+            <TwitterLogo2 className="w-6 h-6 text-blue-400" />
             <span className="ml-2 mr-2 text-2xl font-twitter font-bold text-gray-900">
               Tweetify
             </span>
