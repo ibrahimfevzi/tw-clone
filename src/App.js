@@ -2,6 +2,7 @@ import React from "react";
 import PostList from "./components/PostList";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { ReactComponent as TwitterLogo } from "./assets/twitter.svg";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -32,6 +33,12 @@ const App = () => {
       <div className="grid grid-cols-12 gap-4">
         {/* Sol Bölüm */}
         <div className="col-span-2">
+          <button className="sidebar-icon flex items-center">
+            <TwitterLogo className="w-6 h-6 text-blue-400" />
+            <span className="ml-2 text-2xl font-twitter font-bold text-gray-900">
+              Twitter
+            </span>
+          </button>
           <div className="sticky top-20">
             <div className="flex flex-col items-start mb-4 space-y-2">
               <button className="sidebar-icon">
