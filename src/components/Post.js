@@ -18,7 +18,7 @@ const Post = ({ post }) => {
       month: "2-digit",
       year: "numeric",
     };
-    return date.toLocaleString("en-US", options);
+    return date.toLocaleString("en-GB", options);
   };
 
   return (

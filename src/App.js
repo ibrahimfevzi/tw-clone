@@ -32,7 +32,7 @@ const App = () => {
     <div className="app bg-gray-200 min-h-screen p-4">
       <div className="grid grid-cols-12 gap-4">
         {/* Sol Bölüm */}
-        <div className="col-span-2">
+        <div className="col-span-12 sm:col-span-2">
           <button className="sidebar-icon flex items-center">
             <TwitterLogo className="w-6 h-6 text-blue-400" />
             <span className="ml-2 text-2xl font-twitter font-bold text-gray-900">
@@ -70,7 +70,7 @@ const App = () => {
                 <span className="ml-2 font-twitter">Profil</span>
               </button>
               <div className="flex-grow"></div>
-              <button className="twit-button bg-blue-400 rounded-full p-2 px-20">
+              <button className="twit-button bg-blue-400 rounded-full p-2  sm:p-2 sm:px-4">
                 <i className="fas fa-feather-alt text-white"></i>
                 <span className="ml-2 font-twitter font-bold text-white">
                   Tweetle
@@ -81,7 +81,7 @@ const App = () => {
         </div>
 
         {/* Orta Bölüm */}
-        <div className="col-span-7">
+        <div className="col-span-12 sm:col-span-7">
           <h1 className="text-2xl font-bold mb-4 text-center ">
             En Son Tweetler
           </h1>
@@ -89,7 +89,7 @@ const App = () => {
         </div>
 
         {/* Sağ Bölüm */}
-        <div className="col-span-2">
+        <div className="col-span-12 sm:col-span-3">
           <div className="sticky top-10 ">
             <div className="mb-4 relative">
               <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
