@@ -6,6 +6,7 @@ import { token } from "../App";
 const Post = ({ post }) => {
   const [showComments, setShowComments] = useState(false);
   const [username, setUsername] = useState("");
+  const [avatar, setAvatar] = useState(""); // New state for the avatar
   const [commentContent, setCommentContent] = useState("");
   const [showCommentInput, setShowCommentInput] = useState(false);
 
@@ -26,6 +27,7 @@ const Post = ({ post }) => {
         );
         const userData = response.data;
         setUsername(userData.username);
+        setAvatar(userData.avatar); // Set the avatar state
       } catch (error) {
         console.log(error);
       }
@@ -81,14 +83,22 @@ const Post = ({ post }) => {
   return (
     <div className="post p-4 border border-gray-300 rounded mb-4">
       <div className="flex items-center mb-2">
+        {avatar && (
+          <img
+            src={avatar}
+            alt="Avatar"
+            className="w-12 h-12 rounded-full mr-2"
+          />
+        )}
         <p className="text-sm text-gray-600 mb-0">
           <i>@{username}</i> &middot; {formatCreatedAt(post.created_at)}
+          <h3 className="text-lg mb-2">{post.content}</h3>
         </p>
       </div>
-      <h3 className="text-lg mb-2">{post.content}</h3>
+
       <div className="flex items-center mb-2">
         <button
-          className="action-icon mr-20"
+          className="action-icon ml-14 mr-20"
           aria-label="Comment"
           onClick={toggleComments}
         >
@@ -107,7 +117,7 @@ const Post = ({ post }) => {
         </button>
       </div>
       {showComments && (
-        <div className="comments">
+        <div className="comments ml-8">
           <div className="flex items-center mb-2">
             <h4 className="text-md font-semibold mr-2">Yorumlar:</h4>
             {!showCommentInput ? (

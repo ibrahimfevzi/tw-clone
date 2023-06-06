@@ -4,6 +4,7 @@ import { token } from "../App";
 
 const Comment = ({ comment }) => {
   const [username, setUsername] = useState("");
+  const [avatar, setAvatar] = useState(""); // New state for the avatar
 
   useEffect(() => {
     const fetchUsername = async () => {
@@ -19,6 +20,7 @@ const Comment = ({ comment }) => {
         console.log(response);
         const userData = response.data;
         setUsername(userData.username);
+        setAvatar(userData.avatar); // Set the avatar state
       } catch (error) {
         console.log(error);
       }
@@ -42,13 +44,20 @@ const Comment = ({ comment }) => {
   return (
     <div className="post p-4 border border-gray-300 rounded mb-4">
       <div className="flex items-center mb-2">
+        {avatar && (
+          <img
+            src={avatar}
+            alt="Avatar"
+            className="w-12 h-12 rounded-full mr-2"
+          />
+        )}
         <p className="text-sm text-gray-600 mb-0">
           <i>@{username}</i> &middot; {formatCreatedAt(comment.created_at)}
+          <p className="text-lg mb-2">{comment.content}</p>
         </p>
       </div>
-      <p className="text-sm mb-1">{comment.content}</p>
       <div className="flex items-center mb-2">
-        <button className="action-icon mr-20" aria-label="Comment">
+        <button className="action-icon ml-14 mr-20" aria-label="Comment">
           <i className="fas fa-comment"></i>
         </button>
         <button className="action-icon mr-20" aria-label="Retweet">
