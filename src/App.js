@@ -6,7 +6,7 @@ import { ReactComponent as TwitterLogo } from "./assets/twitter.svg";
 import { ReactComponent as TwitterLogo2 } from "./assets/twitter2.svg";
 
 export const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMiwidXNlcm5hbWUiOiJpYnJhaGltMiIsImlhdCI6MTY4NjAwOTc4OCwiZXhwIjoxNjg2MDk2MTg4fQ.TGvZajE_TMiqm3L872j37nkiG3il7B5YH3gdbWdvNMk";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMiwidXNlcm5hbWUiOiJpYnJhaGltMiIsImlhdCI6MTY4NjA2MjM4MiwiZXhwIjoxNzE3NjE5OTgyfQ.b7EBuGt2CxAgMxvGj1UysD1kQJPE8FDNi9rKWA8y8U8";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
