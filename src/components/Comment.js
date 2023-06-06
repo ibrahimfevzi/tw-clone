@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { token } from "../App";
 
 const Comment = ({ comment }) => {
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const fetchUsername = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:9000/api/users/${comment.user_id}`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+        console.log(response);
+        const userData = response.data;
+        setUsername(userData.username);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUsername();
+  }, [comment.user_id]);
+
   const formatCreatedAt = (createdAt) => {
     const date = new Date(createdAt);
     const options = {
@@ -14,14 +40,13 @@ const Comment = ({ comment }) => {
   };
 
   return (
-    <div className="comment p-2 border border-gray-300 rounded mb-2">
+    <div className="post p-4 border border-gray-300 rounded mb-4">
+      <div className="flex items-center mb-2">
+        <p className="text-sm text-gray-600 mb-0">
+          <i>@{username}</i> &middot; {formatCreatedAt(comment.created_at)}
+        </p>
+      </div>
       <p className="text-sm mb-1">{comment.content}</p>
-      <p className="text-xs text-gray-600 mb-1">
-        Commented by User ID: {comment.user_id}
-      </p>
-      <p className="text-xs text-gray-400 mb-1">
-        {formatCreatedAt(comment.created_at)}
-      </p>
       <div className="flex items-center mb-2">
         <button className="action-icon mr-20" aria-label="Comment">
           <i className="fas fa-comment"></i>

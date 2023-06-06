@@ -4,8 +4,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { ReactComponent as TwitterLogo } from "./assets/twitter.svg";
 
+export const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMiwidXNlcm5hbWUiOiJpYnJhaGltMiIsImlhdCI6MTY4NjAwOTc4OCwiZXhwIjoxNjg2MDk2MTg4fQ.TGvZajE_TMiqm3L872j37nkiG3il7B5YH3gdbWdvNMk";
+
 const App = () => {
   const [posts, setPosts] = useState([]);
+  const [tweetInputVisible, setTweetInputVisible] = useState(false);
+  const [tweetContent, setTweetContent] = useState("");
 
   useEffect(() => {
     fetchPosts();
@@ -17,8 +22,7 @@ const App = () => {
         "http://localhost:9000/api/posts-comments",
         {
           headers: {
-            Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMiwidXNlcm5hbWUiOiJpYnJhaGltMiIsImlhdCI6MTY4NjAwOTc4OCwiZXhwIjoxNjg2MDk2MTg4fQ.TGvZajE_TMiqm3L872j37nkiG3il7B5YH3gdbWdvNMk",
+            Authorization: token,
           },
         }
       );
@@ -28,6 +32,45 @@ const App = () => {
     }
   };
 
+  const handleTweetClick = () => {
+    setTweetInputVisible(true);
+  };
+
+  const handleInputChange = (e) => {
+    setTweetContent(e.target.value);
+  };
+
+  const handleSubmitTweet = async () => {
+    try {
+      // Make the HTTP request to submit the tweet
+      await axios.post(
+        "http://localhost:9000/api/posts",
+        {
+          content: tweetContent,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      // Reset the tweet input after successful submission
+      setTweetContent("");
+      setTweetInputVisible(false);
+
+      // Fetch the updated list of posts
+      fetchPosts();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCancelTweet = () => {
+    setTweetContent("");
+    setTweetInputVisible(false);
+  };
+
   return (
     <div className="app bg-gray-200 min-h-screen p-4">
       <div className="grid grid-cols-12 gap-4">
@@ -35,9 +78,14 @@ const App = () => {
         <div className="col-span-12 sm:col-span-2">
           <button className="sidebar-icon flex items-center">
             <TwitterLogo className="w-6 h-6 text-blue-400" />
-            <span className="ml-2 text-2xl font-twitter font-bold text-gray-900">
-              Twitter
+            <TwitterLogo className="w-6 h-6 text-blue-400" />
+            <TwitterLogo className="w-6 h-6 text-blue-400" />
+            <span className="ml-2 mr-2 text-2xl font-twitter font-bold text-gray-900">
+              Tweetify
             </span>
+            <TwitterLogo className="w-6 h-6 text-blue-400" />
+            <TwitterLogo className="w-6 h-6 text-blue-400" />
+            <TwitterLogo className="w-6 h-6 text-blue-400" />
           </button>
           <div className="sticky top-20">
             <div className="flex flex-col items-start mb-4 space-y-2">
@@ -70,12 +118,41 @@ const App = () => {
                 <span className="ml-2 font-twitter">Profil</span>
               </button>
               <div className="flex-grow"></div>
-              <button className="twit-button bg-blue-400 rounded-full p-2  sm:p-2 sm:px-4">
-                <i className="fas fa-feather-alt text-white"></i>
-                <span className="ml-2 font-twitter font-bold text-white">
-                  Tweetle
-                </span>
-              </button>
+              {!tweetInputVisible ? (
+                <button
+                  className="twit-button bg-blue-400 rounded-full p-2 sm:p-2 sm:px-4"
+                  onClick={handleTweetClick}
+                >
+                  <i className="fas fa-feather-alt text-white"></i>
+                  <span className="ml-2 font-twitter font-bold text-white">
+                    Tweetle
+                  </span>
+                </button>
+              ) : (
+                <div className="flex flex-col items-center space-y-2">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Ne düşünüyorsun?"
+                      className="tweet-input bg-gray-300 rounded-full pl-6 pr-4 py-2 w-full"
+                      value={tweetContent}
+                      onChange={handleInputChange}
+                    />
+                    <button
+                      className="cancel-tweet absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
+                      onClick={handleCancelTweet}
+                    >
+                      <i className="fas fa-times"></i>
+                    </button>
+                  </div>
+                  <button
+                    className="tweet-button bg-blue-400 rounded-full p-2 sm:p-2 sm:px-4 text-white font-bold"
+                    onClick={handleSubmitTweet}
+                  >
+                    Tweetle
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
