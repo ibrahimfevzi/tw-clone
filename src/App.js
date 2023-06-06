@@ -186,13 +186,13 @@ const App = () => {
               </h2>
               {/* Gündemler */}
               <ul className="hashtag-list">
-                <li className="hashtag-item">#Gündem1</li>
-                <li className="hashtag-item">#Gündem2</li>
-                <li className="hashtag-item">#Gündem3</li>
-                <li className="hashtag-item">#Gündem3</li>
-                <li className="hashtag-item">#Gündem3</li>
-                <li className="hashtag-item">#Gündem3</li>
-                <li className="hashtag-item">#Gündem3</li>
+                <li className="hashtag-item">yazılım geliştirme</li>
+                <li className="hashtag-item">frontend </li>
+                <li className="hashtag-item">tailwind ile css</li>
+                <li className="hashtag-item">nodeJs bitecek mi?</li>
+                <li className="hashtag-item">reactJs projeleri</li>
+                <li className="hashtag-item">fullstack web</li>
+                <li className="hashtag-item">absürd şeyler</li>
               </ul>
             </div>
           </div>
