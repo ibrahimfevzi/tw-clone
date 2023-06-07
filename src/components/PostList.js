@@ -1,11 +1,13 @@
 import React from "react";
 import Post from "./Post";
 
-const PostList = ({ posts = [] }) => {
+const PostList = ({ posts, darkMode }) => {
+  const reversedPosts = [...posts].reverse(); // Reverse the posts array
+
   return (
-    <div className="post-list">
-      {posts.map((post) => (
-        <Post key={post.post_id} post={post} />
+    <div>
+      {reversedPosts.map((post) => (
+        <Post key={post.post_id} post={post} darkMode={darkMode} />
       ))}
     </div>
   );

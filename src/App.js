@@ -1,17 +1,21 @@
 import React from "react";
+import "./App.css";
 import PostList from "./components/PostList";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { ReactComponent as TwitterLogo } from "./assets/twitter.svg";
 import { ReactComponent as TwitterLogo2 } from "./assets/twitter2.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
 export const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMiwidXNlcm5hbWUiOiJpYnJhaGltMiIsImlhdCI6MTY4NjA2MjM4MiwiZXhwIjoxNzE3NjE5OTgyfQ.b7EBuGt2CxAgMxvGj1UysD1kQJPE8FDNi9rKWA8y8U8";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxNSwidXNlcm5hbWUiOiJpYnJhaGltZmV2emkiLCJpYXQiOjE2ODYwODg3MjUsImV4cCI6MTcxNzY0NjMyNX0.n6w7hCWLoBZZcEfcIgEoWiZzw-KLpT2F9keeV2FhGD4";
 
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [tweetInputVisible, setTweetInputVisible] = useState(false);
   const [tweetContent, setTweetContent] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     fetchPosts();
@@ -72,8 +76,16 @@ const App = () => {
     setTweetInputVisible(false);
   };
 
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="app bg-gray-200 min-h-screen p-4">
+    <div
+      className={`app ${
+        darkMode ? "app-dark bg-gray-800 " : ""
+      } bg-gray-200 min-h-screen p-4`}
+    >
       <div className="grid grid-cols-12 gap-4">
         {/* Sol Bölüm */}
         <div className="col-span-12 sm:col-span-2">
@@ -118,6 +130,10 @@ const App = () => {
                 <i className="fas fa-user"></i>
                 <span className="ml-2 font-twitter">Profil</span>
               </button>
+              <button className="sidebar-icon" onClick={handleDarkModeToggle}>
+                <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+                <span className="ml-2 font-twitter">Gece Modu</span>
+              </button>
               <div className="flex-grow"></div>
               {!tweetInputVisible ? (
                 <button
@@ -135,7 +151,7 @@ const App = () => {
                     <input
                       type="text"
                       placeholder="Ne düşünüyorsun?"
-                      className="tweet-input bg-gray-300 rounded-full pl-6 pr-4 py-2 w-full"
+                      className="tweet-input bg-gray-300 text-black rounded-full pl-6 pr-4 py-2 w-full"
                       value={tweetContent}
                       onChange={handleInputChange}
                     />
@@ -163,7 +179,7 @@ const App = () => {
           <h1 className="text-2xl font-bold mb-4 text-center ">
             En Son Tweetler
           </h1>
-          <PostList posts={posts} />
+          <PostList posts={posts} darkMode={darkMode} />
         </div>
 
         {/* Sağ Bölüm */}
