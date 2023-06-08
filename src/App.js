@@ -7,9 +7,10 @@ import { ReactComponent as TwitterLogo } from "./assets/twitter.svg";
 import { ReactComponent as TwitterLogo2 } from "./assets/twitter2.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
 
-export const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJ1c2VybmFtZSI6ImlicmFoaW0iLCJpYXQiOjE2ODYyNjE1MDMsImV4cCI6MTcxNzgxOTEwM30.OOgjikFck2kmbuQ48M1qytH4lz1cso5lM_MfEllNFJI";
+export const token = localStorage.getItem("token");
 
 const App = () => {
   const [posts, setPosts] = useState([]);
@@ -211,6 +212,8 @@ const App = () => {
                 <li className="hashtag-item">absürd şeyler</li>
               </ul>
             </div>
+            <LoginForm />
+            <RegisterForm />
           </div>
         </div>
       </div>
