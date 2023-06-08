@@ -121,8 +121,27 @@ const Post = ({ post, darkMode }) => {
     }
   };
 
-  const handleEditPost = () => {
+  const handleEditPost = async () => {
     // Implement the logic to edit the post
+    try {
+      const newContent = prompt("Yeni içerik", post.content);
+      if (newContent) {
+        await axios.put(
+          `http://localhost:9000/api/posts/${post.post_id}`,
+          {
+            content: newContent,
+          },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleLike = async () => {
@@ -276,6 +295,7 @@ const Post = ({ post, darkMode }) => {
             ) : (
               <div className="comment-input-container">
                 <input
+                  className="comment-input text-black bg-gray-300 rounded-full p-2 sm:p-1 sm:px-3"
                   type="text"
                   placeholder="Yorum yap..."
                   value={commentContent}
@@ -296,7 +316,7 @@ const Post = ({ post, darkMode }) => {
                   <i className="fas fa-paper-plane text-white"></i>
                   <span
                     className={`mm-1 font-twitter ${
-                      darkMode ? "text-white" : ""
+                      darkMode ? "text-white" : "text-white"
                     }`}
                   >
                     Gönder

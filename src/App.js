@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
 export const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxNSwidXNlcm5hbWUiOiJpYnJhaGltZmV2emkiLCJpYXQiOjE2ODYwODg3MjUsImV4cCI6MTcxNzY0NjMyNX0.n6w7hCWLoBZZcEfcIgEoWiZzw-KLpT2F9keeV2FhGD4";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxLCJ1c2VybmFtZSI6ImlicmFoaW0iLCJpYXQiOjE2ODYyNjE1MDMsImV4cCI6MTcxNzgxOTEwM30.OOgjikFck2kmbuQ48M1qytH4lz1cso5lM_MfEllNFJI";
 
 const App = () => {
   const [posts, setPosts] = useState([]);

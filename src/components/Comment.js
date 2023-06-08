@@ -64,8 +64,28 @@ const Comment = ({ comment, darkMode }) => {
     }
   };
 
-  const handleEditComment = () => {
+  const handleEditComment = async () => {
     // Implement the logic to edit the comment
+    try {
+      const newContent = prompt("Yorumu Güncelle", comment.content);
+      if (newContent) {
+        await axios.put(
+          `http://localhost:9000/api/comments/${comment.comment_id}`,
+          {
+            content: newContent,
+            post_id: comment.post_id,
+          },
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleLike = async () => {
