@@ -92,7 +92,7 @@ const RegisterForm = ({ onRegister }) => {
               htmlFor="username"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-              Kullanıcı Adı:
+              Kullanıcı Adı <span className="text-red-500">*</span>:
             </label>
             <input
               type="text"
@@ -107,7 +107,7 @@ const RegisterForm = ({ onRegister }) => {
               htmlFor="password"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-              Şifre:
+              Şifre <span className="text-red-500">*</span>:
             </label>
             <input
               type="password"
@@ -122,7 +122,7 @@ const RegisterForm = ({ onRegister }) => {
               htmlFor="email"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-              Email:
+              Email <span className="text-red-500">*</span>:
             </label>
             <input
               type="email"
@@ -137,7 +137,7 @@ const RegisterForm = ({ onRegister }) => {
               htmlFor="avatar"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-              Avatar:
+              Avatar Linki:
             </label>
             <input
               type="text"
